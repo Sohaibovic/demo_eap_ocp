@@ -3,7 +3,7 @@
   gather_facts: no
 
   tasks:
-    - name: Create Coolstore namespace {{ eap_ocp_coolstore }}"
+    - name: Create Coolstore namespace {{ eap_ocp_namespace }}"
       k8s:
         state: present
         name: "{{ eap_ocp_coolstore }}"
