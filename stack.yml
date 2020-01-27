@@ -1,0 +1,11 @@
+- name: Deploy Coolstore Stack on OCP
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: Create Coolstore namespace {{ eap_ocp_coolstore }}"
+      k8s:
+        state: present
+        name: "{{ eap_ocp_coolstore }}"
+        api_version: v1
+        kind: Namespace
