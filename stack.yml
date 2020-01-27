@@ -9,3 +9,6 @@
         name: "{{ eap_ocp_namespace }}"
         api_version: v1
         kind: Namespace
+        host: "{{ k8_host }}"
+        user: "{{ k8_user }}"
+        password: "{{ k8_pass }}"
