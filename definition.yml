@@ -1,5 +1,6 @@
 apiVersion: v1
 items:
+
   - apiVersion: v1
     kind: Service
     metadata:
@@ -31,5 +32,51 @@ items:
         targetPort: 5432
       selector:
         deploymentConfig: coolstore-postgresql
+
+  - apiVersion: route.openshift.io/v1
+    id: coolstore-http
+    kind: Route
+    metadata:
+      annotations:
+        description: Route for application's http service.
+      labels:
+        application: coolstore
+        template: coolstore-monolith-binary-demo
+      name: www
+    spec:
+      to:
+        name: coolstore
+  - apiVersion: image.openshift.io/v1
+    kind: ImageStream
+    metadata:
+      labels:
+        application: coolstore
+        build: coolstore
+        template: coolstore-monolith-binary-demo
+      name: coolstore
+  - apiVersion: build.openshift.io/v1
+    kind: BuildConfig
+    metadata:
+      labels:
+        application: coolstore
+        template: coolstore-monolith-binary-demo
+      name: coolstore
+    spec:
+      output:
+        to:
+          kind: ImageStreamTag
+          name: coolstore:latest
+      source:
+        binary: {}
+        type: Binary
+      strategy:
+        sourceStrategy:
+          from:
+            kind: ImageStreamTag
+            name: jboss-eap70-openshift:1.5
+            namespace: openshift
+        type: Source
+
+
 kind: List
 metadata: {}
