@@ -1,0 +1,16 @@
+- apiVersion: project.openshift.io/v1
+  kind: Service
+  metadata:
+    annotations:
+      description: The web server's http port.
+      service.alpha.openshift.io/dependencies: '[{"name":"coolstore-postgresql","namespace":"","kind":"Service"}]'
+    labels:
+      application: coolstore
+      template: coolstore-monolith-binary-demo
+    name: coolstore
+  spec:
+    ports:
+    - port: 8080
+      targetPort: 8080
+    selector:
+      deploymentConfig: coolstore

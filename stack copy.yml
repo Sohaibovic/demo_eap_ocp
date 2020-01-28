@@ -9,3 +9,8 @@
         name: "{{ eap_ocp_namespace }}"
         api_version: project.openshift.io/v1
         kind: Project
+
+    - name: Create Coolstore service in {{ eap_ocp_namespace }}"
+      k8s:
+        state: present
+        src: definition.yml
