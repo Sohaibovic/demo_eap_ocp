@@ -1,0 +1,42 @@
+---
+fields:
+  - id: jgroups_jceks
+    type: string
+    label: JGoups keystore
+    secret: true
+  - id: jceks_name
+    type: string
+    label: JGroups keystore name 
+  - id: jceks_pass
+    type: string
+    label: JGroups keystore pass 
+    secret: true
+  - id: keystore_jks
+    type: string
+    label: HTTPS keystore
+    secret: true
+  - id: keystore_name
+    type: string
+    label: Name of the keystore
+  - id: keystore_pass
+    type: string
+    label: Keystore Password 
+    secret: true
+required:
+  - jgroups_jceks
+  - jceks_name
+  - jceks_pass
+  - keystore_jks
+  - keystore_name
+  - keystore_pass
+
+
+
+---
+extra_vars:
+  jgroups_jceks: '{{ jgroups_jceks }}'
+  jceks_name: '{{ jceks_name }}'
+  jceks_pass: '{{ jceks_pass }}'
+  keystore_jks: '{{ keystore_jks }}'
+  keystore_name: '{{ keystore_name }}'
+  keystore_pass: '{{ keystore_pass }}'

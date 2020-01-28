@@ -10,8 +10,14 @@
         api_version: project.openshift.io/v1
         kind: Project
 
-    - name: Create Coolstore service in {{ eap_ocp_namespace }}
+    - name: Create Coolstore objects in {{ eap_ocp_namespace }}
       k8s:
         state: present
         namespace: "{{ eap_ocp_namespace }}"
         definition: "{{ lookup('file', 'definition.yml') }}"
+
+    - name: Create Coolstore secrets {{ eap_ocp_namespace }}
+      k8s:
+        state: present
+        name: "{{ eap_ocp_namespace }}"
+        definitions: "{{ lookup('template', 'secrets.j2') }}"
