@@ -16,6 +16,9 @@
         namespace: "{{ eap_ocp_namespace }}"
         definition: "{{ lookup('file', 'definition.yml') }}"
 
+    - debug: 
+        var: jgroups_jceks
+
     - debug:
         msg: "{{ lookup('template', 'jboss_secrets.j2') }}"
 
