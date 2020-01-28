@@ -17,7 +17,7 @@
         definition: "{{ lookup('file', 'definition.yml') }}"
 
     - debug:
-        var: "{{ lookup('template', 'jboss_secrets.j2') }}"
+        msg: "{{ lookup('template', 'jboss_secrets.j2') }}"
 
     - name: Create Coolstore secrets {{ eap_ocp_namespace }}
       k8s:
