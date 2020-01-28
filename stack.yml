@@ -17,7 +17,7 @@
         definition: "{{ lookup('file', 'definition.yml') }}"
 
     - debug: 
-        var: jgroups_jceks
+        var: keystore_jks
 
     - debug:
         msg: "{{ lookup('template', 'jboss_secrets.j2') }}"
