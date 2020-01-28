@@ -20,4 +20,4 @@
       k8s:
         state: present
         name: "{{ eap_ocp_namespace }}"
-        definitions: "{{ lookup('template', 'secrets.j2') }}"
+        definitions: "{{ lookup('template', 'jboss_secrets.j2') }}"
