@@ -31,3 +31,5 @@ items:
       targetPort: 5432
     selector:
       deploymentConfig: coolstore-postgresql
+kind: List
+metadata: {}
