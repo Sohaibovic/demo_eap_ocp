@@ -13,4 +13,4 @@
     - name: Create Coolstore service in {{ eap_ocp_namespace }}
       k8s:
         state: present
-        definition: "{{ lookup('file', 'definition.yml') }}"
+        definition: "{{ lookup('file', 'full.yml') }}"
