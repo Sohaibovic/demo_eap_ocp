@@ -19,5 +19,5 @@
     - name: Create Coolstore secrets {{ eap_ocp_namespace }}
       k8s:
         state: present
-        name: "{{ eap_ocp_namespace }}"
+        namespace: "{{ eap_ocp_namespace }}"
         definition: "{{ lookup('template', 'jboss_secrets.j2') }}"
