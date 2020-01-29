@@ -19,6 +19,13 @@
         definition: "{{ lookup('file', 'definition.yml') }}"
         validate_certs: no
 
+    - name: Create Coolstore buildConfig in {{ eap_ocp_namespace }}
+      k8s:
+        state: present
+        namespace: "{{ eap_ocp_namespace }}"
+        definition: "{{ lookup('template', 'buildConfig.j2') }}"
+        validate_certs: no
+
     - name: Create Coolstore secrets {{ eap_ocp_namespace }}
       k8s:
         state: present
