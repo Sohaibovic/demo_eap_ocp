@@ -1,22 +1,22 @@
-  - apiVersion: build.openshift.io/v1
-    kind: BuildConfig
-    metadata:
-      labels:
-        application: coolstore
-        template: coolstore-monolith-binary-demo
-      name: coolstore
-    spec:
-      output:
-        to:
-          kind: ImageStreamTag
-          name: coolstore:latest
-      source:
-        binary: {}
-        type: Binary
-      strategy:
-        sourceStrategy:
-          from:
-            kind: ImageStreamTag
-            name: {{ eap_runtime }}
-            namespace: openshift
-        type: Source
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+    labels:
+    application: coolstore
+    template: coolstore-monolith-binary-demo
+    name: coolstore
+spec:
+    output:
+    to:
+        kind: ImageStreamTag
+        name: coolstore:latest
+    source:
+    binary: {}
+    type: Binary
+    strategy:
+    sourceStrategy:
+        from:
+        kind: ImageStreamTag
+        name: {{ eap_runtime }}
+        namespace: openshift
+    type: Source
