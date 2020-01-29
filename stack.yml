@@ -71,22 +71,19 @@
     - debug: 
         var: eap_route.resources.0.spec.host
 
-    # - name: Smoke Test for 
-    #   uri: 
-    #     url: "http://"
-    #   register: smoke_test
-    #   until: smoke_test.status == 200
-    #   retries: 10
-    #   delay: 10
-    #   run_once: yes
+    - name: Smoke Test for 
+      uri: 
+        url: "http://{{ eap_route.resources.0.spec.host }}"
+      register: smoke_test
+      until: smoke_test.status == 200
+      retries: 10
+      delay: 10
+      run_once: yes
 
-    # - name: Notify Success
-    #   debug: 
-    #     msg:
-    #     - "* Provision Success"
-    #     - "* Reach Application at: {{ hostvars.fact_store.cat_facts.lb_fqdn }}:{{ az_loadbalancer_fport }}"
-    #     verbosity: 0
-    #   run_once: yes
-
-
-    # http://www-demo44.apps.democenter-dcl.azure.clustership.com
+    - name: Notify Success
+      debug: 
+        msg:
+        - "* Provision Success"
+        - "* Reach Application at: http://{{ eap_route.resources.0.spec.host }}"
+        verbosity: 0
+      run_once: yes
