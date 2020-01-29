@@ -49,5 +49,37 @@
         oc login --insecure-skip-tls-verify=true --token={{ lookup('env','K8S_AUTH_API_KEY') }} --server={{ lookup('env','K8S_AUTH_HOST') }}
         oc project {{ eap_ocp_namespace }}
         oc start-build coolstore --from-file=/tmp/ROOT.war --wait=true
+      when: run_build | default(true)
 
-    # - name: Smoke Test
+    # The route location is route_name + '-' + namespace + '.apps.' + cluster_url 
+    # We use this to demo k8s_info usage
+    - name: Get the route
+      k8s_info:
+        api_version: v1
+        kind: Route
+        name: coolstore
+        namespace:  "{{ eap_ocp_namespace }}"
+      register: eap_route
+
+    - debug: 
+        var: eap_route
+
+    # - name: Smoke Test for 
+    #   uri: 
+    #     url: "http://"
+    #   register: smoke_test
+    #   until: smoke_test.status == 200
+    #   retries: 10
+    #   delay: 10
+    #   run_once: yes
+
+    # - name: Notify Success
+    #   debug: 
+    #     msg:
+    #     - "* Provision Success"
+    #     - "* Reach Application at: {{ hostvars.fact_store.cat_facts.lb_fqdn }}:{{ az_loadbalancer_fport }}"
+    #     verbosity: 0
+    #   run_once: yes
+
+
+    # http://www-demo44.apps.democenter-dcl.azure.clustership.com
