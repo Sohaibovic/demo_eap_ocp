@@ -84,12 +84,12 @@ items:
                   - /opt/eap/bin/jboss-cli.sh
                   - -c
                   - :shutdown(timeout=60)
-            livenessProbe:
-              exec:
-                command:
-                - /bin/bash
-                - -c
-                - /opt/eap/bin/livenessProbe.sh
+            # livenessProbe:
+            #   exec:
+            #     command:
+            #     - /bin/bash
+            #     - -c
+            #     - /opt/eap/bin/livenessProbe.sh
             name: coolstore
             ports:
             - containerPort: 8778

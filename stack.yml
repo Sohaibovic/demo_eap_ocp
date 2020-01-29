@@ -37,7 +37,7 @@
         definition: "{{ lookup('file', 'definitions_2.yml') }}"
         validate_certs: no
 
-    - name: Create Coolstore secrets {{ eap_ocp_namespace }}
+    - name: Create Coolstore secrets in {{ eap_ocp_namespace }}
       k8s:
         state: present
         namespace: "{{ eap_ocp_namespace }}"
