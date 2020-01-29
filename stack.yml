@@ -3,22 +3,25 @@
   gather_facts: no
 
   tasks:
-    
+
     - name: Create Coolstore namespace {{ eap_ocp_namespace }}
       k8s:
         state: present
         name: "{{ eap_ocp_namespace }}"
         api_version: project.openshift.io/v1
         kind: Project
+        validate_certs: no
 
     - name: Create Coolstore objects in {{ eap_ocp_namespace }}
       k8s:
         state: present
         namespace: "{{ eap_ocp_namespace }}"
         definition: "{{ lookup('file', 'definition.yml') }}"
+        validate_certs: no
 
     - name: Create Coolstore secrets {{ eap_ocp_namespace }}
       k8s:
         state: present
         namespace: "{{ eap_ocp_namespace }}"
         definition: "{{ lookup('template', 'jboss_secrets.j2') }}"
+        validate_certs: no
