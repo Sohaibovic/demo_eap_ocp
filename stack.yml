@@ -69,7 +69,7 @@
       register: eap_route
 
     - debug: 
-        var: eap_route.ressources.0.spec.host
+        var: eap_route.resources.0.spec.host
 
     # - name: Smoke Test for 
     #   uri: 
