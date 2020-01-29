@@ -3,6 +3,7 @@
   gather_facts: no
 
   tasks:
+    
     - name: Create Coolstore namespace {{ eap_ocp_namespace }}
       k8s:
         state: present
@@ -15,12 +16,6 @@
         state: present
         namespace: "{{ eap_ocp_namespace }}"
         definition: "{{ lookup('file', 'definition.yml') }}"
-
-    - debug: 
-        var: keystore_jks
-
-    - debug:
-        msg: "{{ lookup('template', 'jboss_secrets.j2') }}"
 
     - name: Create Coolstore secrets {{ eap_ocp_namespace }}
       k8s:
