@@ -39,7 +39,7 @@
 
     - name: Run the build
       shell:  |
-        oc login --token={{ lookup('env','K8S_AUTH_API_KEY') }} --server={{ lookup('env','K8S_AUTH_HOST') }}
+        oc login --insecure --token={{ lookup('env','K8S_AUTH_API_KEY') }} --server={{ lookup('env','K8S_AUTH_HOST') }}
         oc project {{ eap_ocp_namespace }}
         oc start-build coolstore --from-file=/tmp/ROOT.war --wait=true
 
