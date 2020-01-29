@@ -63,8 +63,8 @@
         kind: Route
         name: www
         namespace:  "{{ eap_ocp_namespace }}"
-        api_key: k8s_token
-        host: k8s_host
+        api_key: "{{ k8s_token }}"
+        host: "{{ k8s_host }}"
         validate_certs: no
       register: eap_route
 
