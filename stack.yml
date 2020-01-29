@@ -3,8 +3,8 @@
   gather_facts: no
 
   vars:
-    k8s_token: lookup('env','K8S_AUTH_API_KEY')
-    k8s_host: lookup('env','K8S_AUTH_HOST')
+    k8s_token: "{{ lookup('env','K8S_AUTH_API_KEY') }}"
+    k8s_host: "{{ lookup('env','K8S_AUTH_HOST') }}"
 
   tasks:
 
