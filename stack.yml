@@ -53,7 +53,7 @@
         oc login --insecure-skip-tls-verify=true --token={{ k8s_token }} --server={{ k8s_host }}
         oc project {{ eap_ocp_namespace }}
         oc start-build coolstore --from-file=/tmp/ROOT.war --wait=true
-      when: run_build | default(true)
+      when: run_build
 
     # The route location is route_name + '-' + namespace + '.apps.' + cluster_url 
     # We use this to demo k8s_info usage
