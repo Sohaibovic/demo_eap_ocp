@@ -25,3 +25,21 @@
         namespace: "{{ eap_ocp_namespace }}"
         definition: "{{ lookup('template', 'jboss_secrets.j2') }}"
         validate_certs: no
+
+    - name: Select Artifact 
+      set_fact:
+        artifact: "{{ artifact_store | regex_replace('/$','') }}/{{ war_name }}-{{ version }}.war"
+ 
+    - name: Get WAR
+      get_url:
+        url: "{{ artifact }}"
+        dest: /tmp/ROOT.war
+        force: yes
+      delegate_to: localhost
+
+    - name: Run the build
+      shell:  |
+        oc project {{ eap_ocp_namespace }}
+        oc start-build coolstore --from-file=/tmp/ROOT.war --wait=true
+
+    # - name: Smoke Test
