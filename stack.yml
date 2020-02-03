@@ -40,18 +40,18 @@
         kind: Project
         validate_certs: no
 
+    - name: Apply project quota
+      k8s:
+        state: present
+        namespace: "{{ eap_ocp_namespace }}"
+        definition: "{{ lookup('template', 'resourceQuota.j2') }}"
+        validate_certs: no
+
     - name: Apply project limit range
       k8s:
         state: present
         namespace: "{{ eap_ocp_namespace }}"
         definition: "{{ lookup('template', 'limitRange.j2') }}"
-        validate_certs: no
-
-    - name: Apply project limits
-      k8s:
-        state: present
-        namespace: "{{ eap_ocp_namespace }}"
-        definition: "{{ lookup('template', 'resourceQuota.j2') }}"
         validate_certs: no
 
     - name: Create Coolstore objects in {{ eap_ocp_namespace }}
