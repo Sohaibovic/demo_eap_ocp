@@ -15,10 +15,10 @@
         tee_shirt_sizes: 
           dev: 
             max_pods: 2
-            request_cpu: 300m
-            request_mem: 2Gi
-            limit_cpu: 300m
-            limit_memory: 2Gi
+            request_cpu: 400m
+            request_mem: 3Gi
+            limit_cpu: 400m
+            limit_memory: 3Gi
           prod:
             max_pods: 4
             request_cpu: 300m
