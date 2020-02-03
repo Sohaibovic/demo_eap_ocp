@@ -17,7 +17,7 @@
             max_pods: 2
             request_cpu: 300m
             request_mem: 2Gi
-            limit_cpu: 10Om
+            limit_cpu: 100m
             limit_memory: 2Gi
           prod:
             max_pods: 4
