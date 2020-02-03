@@ -15,8 +15,8 @@
         tee_shirt_sizes: 
           dev: 
             max_pods: 6
-            request_cpu: 200m
-            request_mem: 2Gi
+            request_cpu: 400m
+            request_mem: 4Gi
             limit_cpu: 600m
             limit_memory: 6Gi
           prod:
