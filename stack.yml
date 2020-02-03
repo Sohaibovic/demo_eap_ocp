@@ -8,12 +8,43 @@
 
   tasks:
 
+    - name: Select Project Size
+      set_fact:
+        size: "{{ tee_shirt_sizes[project_size] }}"
+      vars:
+        tee_shirt_sizes: 
+          dev: 
+            max_pods: 2
+            request_cpu: 10m
+            request_mem: 2Gi
+            limit_cpu: 10m
+            limit_memory: 2Gi
+          prod:
+            max_pods: 4
+            request_cpu: 20m
+            request_mem: 4Gi
+            limit_cpu: 20m
+            limit_memory: 4Gi
+          perf: 
+            max_pods: 8
+            request_cpu: 40m
+            request_mem: 8Gi
+            limit_cpu: 40m
+            limit_memory: 8Gi
+
     - name: Create Coolstore namespace {{ eap_ocp_namespace }}
       k8s:
         state: present
         name: "{{ eap_ocp_namespace }}"
         api_version: project.openshift.io/v1
         kind: Project
+        validate_certs: no
+
+    - name: Apply project limits
+      k8s:
+        state: present
+        namespace: "{{ eap_ocp_namespace }}"
+        definition: "{{ lookup('template', 'resourceQuota.j2') }}"
         validate_certs: no
 
     - name: Create Coolstore objects in {{ eap_ocp_namespace }}
