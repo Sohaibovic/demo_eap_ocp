@@ -40,6 +40,20 @@
         kind: Project
         validate_certs: no
 
+    - name: Apply project limit range
+      k8s:
+        state: present
+        namespace: "{{ eap_ocp_namespace }}"
+        definition: "{{ lookup('template', 'limitRange.j2') }}"
+        validate_certs: no
+
+    - name: Apply project limits
+      k8s:
+        state: present
+        namespace: "{{ eap_ocp_namespace }}"
+        definition: "{{ lookup('template', 'resourceQuota.j2') }}"
+        validate_certs: no
+
     - name: Create Coolstore objects in {{ eap_ocp_namespace }}
       k8s:
         state: present
@@ -85,13 +99,6 @@
         oc project {{ eap_ocp_namespace }}
         oc start-build coolstore --from-file=/tmp/ROOT.war --wait=true
       when: run_build | bool
-
-    - name: Apply project limits
-      k8s:
-        state: present
-        namespace: "{{ eap_ocp_namespace }}"
-        definition: "{{ lookup('template', 'resourceQuota.j2') }}"
-        validate_certs: no
 
     # The route location is route_name + '-' + namespace + '.apps.' + cluster_url 
     # We use this to demo k8s_info usage
