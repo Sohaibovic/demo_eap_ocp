@@ -15,22 +15,16 @@
         tee_shirt_sizes: 
           dev: 
             max_pods: 6
-            request_cpu: 400m
-            request_mem: 4Gi
-            limit_cpu: 600m
-            limit_memory: 6Gi
+            limit_cpu: 2000m
+            limit_memory: 4Gi
           prod:
             max_pods: 12
-            request_cpu: 300m
-            request_mem: 2Gi
-            limit_cpu: 600m
-            limit_memory: 4Gi
+            limit_cpu: 4000m
+            limit_memory: 8Gi
           perf: 
             max_pods: 24
-            request_cpu: 300m
-            request_mem: 2Gi
-            limit_cpu: 900m
-            limit_memory: 8Gi
+            limit_cpu: 8000m
+            limit_memory: 16Gi
 
     - name: Create Coolstore namespace {{ eap_ocp_namespace }}
       k8s:
