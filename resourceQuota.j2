@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ResourceQuota
 metadata:
-  name: compute-resources
+  name: compute-resources-quota
 spec:
   hard:
     pods: {{ size.max_pods }} 
@@ -9,4 +9,4 @@ spec:
     requests.memory: {{ size.request_mem }} 
     limits.cpu: {{ size.limit_cpu }}  
     limits.memory: {{ size.limit_memory }}  
-    
+
